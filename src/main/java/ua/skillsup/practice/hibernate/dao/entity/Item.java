@@ -1,18 +1,37 @@
 package ua.skillsup.practice.hibernate.dao.entity;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
  * Created by oleksii on 10/10/15.
  */
+@Entity
+@Table(name = "ITEM")
 public class Item {
 
+	@Id
+	@Column(name = "ID")
 	private Long id;
+
+	@Column(name = "TITLE", nullable = false, unique = true)
 	private String title;
+
+	@Column(name = "DECRIPTION", nullable = false)
 	private String description;
+
+	@Column(name = "WIDTH")
 	private Double width;
+
+	@Column(name = "HEIGHT")
 	private Double height;
+
+	@Column(name = "WEIGHT")
 	private Double weight;
+
+	@Version
+	@Column(name = "VERSION", nullable = false)
+	private int version;
 
 	public Long getId() {
 		return id;
