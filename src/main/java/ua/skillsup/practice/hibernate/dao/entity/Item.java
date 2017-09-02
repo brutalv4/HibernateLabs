@@ -17,7 +17,7 @@ public class Item {
 	@Column(name = "TITLE", nullable = false, unique = true)
 	private String title;
 
-	@Column(name = "DECRIPTION", nullable = false)
+	@Column(name = "DESCRIPTION", nullable = false)
 	private String description;
 
 	@Column(name = "WIDTH")
