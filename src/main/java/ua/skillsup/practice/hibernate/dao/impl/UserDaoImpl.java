@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ua.skillsup.practice.hibernate.converters.EntityDtoConverter;
 import ua.skillsup.practice.hibernate.dao.UserDao;
-import ua.skillsup.practice.hibernate.dao.entity.Item;
 import ua.skillsup.practice.hibernate.dao.entity.User;
 import ua.skillsup.practice.hibernate.model.UserDto;
 
