@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ua.skillsup.practice.hibernate.converters.EntityDtoConverter;
 import ua.skillsup.practice.hibernate.dao.UserDao;
+import ua.skillsup.practice.hibernate.dao.entity.Item;
 import ua.skillsup.practice.hibernate.dao.entity.User;
 import ua.skillsup.practice.hibernate.model.UserDto;
 
@@ -45,7 +46,11 @@ public class UserDaoImpl implements UserDao {
     }
 
 	public UserDto findByLogin(String login) {
-		return null;
+        User user = (User) sessionFactory.getCurrentSession()
+                .createQuery("select i from User i where i.login = :login")
+                .setParameter("login", login).uniqueResult();
+
+        return convert(user);
 	}
 
 	public long create(UserDto userDto) {

@@ -36,7 +36,6 @@ public class ItemDaoImpl implements ItemDao {
     public List<ItemDto> findAll() {
         List<Item> items = sessionFactory.getCurrentSession()
                 .createQuery("from ua.skillsup.practice.hibernate.dao.entity.Item").list();
-        ArrayList<ItemDto> result = new ArrayList<>(items.size());
 
         return items.stream().map(EntityDtoConverter::convert).collect(toList());
 	}

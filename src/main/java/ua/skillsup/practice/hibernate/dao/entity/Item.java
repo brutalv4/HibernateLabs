@@ -2,6 +2,7 @@ package ua.skillsup.practice.hibernate.dao.entity;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Created by oleksii on 10/10/15.
@@ -28,6 +29,9 @@ public class Item {
 
 	@Column(name = "WEIGHT")
 	private Double weight;
+
+	@OneToMany(mappedBy = "item")
+	private Set<Lot> lots;
 
 	@Version
 	@Column(name = "VERSION", nullable = false)
