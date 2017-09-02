@@ -1,6 +1,7 @@
 package ua.skillsup.practice.hibernate.dao.entity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,6 +33,15 @@ public class Item {
 
 	@OneToMany(mappedBy = "item")
 	private Set<Lot> lots;
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(
+			name = "ITEM_CATEGORY",
+
+			joinColumns = @JoinColumn(name = "ITEM_ID"),
+			inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID")
+			)
+	private List<Category> categoryList;
 
 	@Version
 	@Column(name = "VERSION", nullable = false)
@@ -84,6 +94,15 @@ public class Item {
 	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
+
+	public List<Category> getCategoryList() {
+		return categoryList;
+	}
+
+	public void setCategoryList(List<Category> categoryList) {
+		this.categoryList = categoryList;
+	}
+
 
 	@Override
 	public boolean equals(Object o) {

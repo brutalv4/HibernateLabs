@@ -11,6 +11,7 @@ import ua.skillsup.practice.hibernate.model.filter.ItemFilter;
 import ua.skillsup.practice.hibernate.service.AuctionService;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -23,13 +24,15 @@ public class App {
 		ItemDao itemDao = context.getBean(ItemDao.class);
 		UserDao userDao = context.getBean(UserDao.class);
 		LotDao lotDao = context.getBean(LotDao.class);
+//
+//		AuctionService service = context.getBean(AuctionService.class);
+//
+//		LotDto odinLot = service.createLot("Odin", "Gladiator, digital copy", BigDecimal.valueOf(500L), 5);
+//		System.out.println(odinLot);
+//
+//        List<LotDto> all = lotDao.findAll();
 
-		AuctionService service = context.getBean(AuctionService.class);
-
-		LotDto odinLot = service.createLot("Odin", "Gladiator, digital copy", BigDecimal.valueOf(500L), 5);
-		System.out.println(odinLot);
-
-        List<LotDto> all = lotDao.findAll();
+        itemDao.findByCategories(Collections.singleton("Table"));
 
         context.stop();
 	}

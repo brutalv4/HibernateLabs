@@ -15,6 +15,7 @@ import ua.skillsup.practice.hibernate.model.filter.ItemFilter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
 import static ua.skillsup.practice.hibernate.converters.EntityDtoConverter.convert;
@@ -93,5 +94,15 @@ public class ItemDaoImpl implements ItemDao {
 
 	public void update(ItemDto itemDto) {
 
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<ItemDto> findByCategories(Set<String> categories) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Item.class);
+		criteria.add(Restrictions.in("categoryList.title", categories));
+		List<Item> items = criteria.list();
+
+		return items.stream().map(EntityDtoConverter::convert).collect(toList());
 	}
 }
